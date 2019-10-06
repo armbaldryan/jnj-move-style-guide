@@ -10,6 +10,8 @@ This style guide is mostly based on the standards that are currently prevalent i
   5. [Spacing](#spacing)
   6. [Parentheses](#parentheses)
   7. [Tags](#tags)
+  8. [Variables](#variables)
+  9. [Props[(#props)
 
 ## Basic Rules
 
@@ -216,17 +218,219 @@ This style guide is mostly based on the standards that are currently prevalent i
     />
     ```
     
-    ## Code Standarts
-    
-    # Code standards
+    ### Line length should not exceed 80 characters.
 
-    ## Destruct your `props`
+    
+    ## Variables
+    
+   - Always define variables to increase
+reuse and make styles more consistent.
+```scss
+$breakPoint-sm: 600px;
+$breakPoint-md: 960px;
+$breakPoint-lg: 1280px;
+$breakPoint-xl: 1920px;
+```
+  ### Use explanatory variables
+
+
+## Props
+
+  - Always use camelCase for prop names.
+
+    ```jsx
+    // bad
+    <Foo
+      UserName="hello"
+      phone_number={12345678}
+    />
+
+    // good
+    <Foo
+      userName="hello"
+      phoneNumber={12345678}
+    />
+    ```
+
+  - Omit the value of the prop when it is explicitly `true`.
+
+    ```jsx
+    // bad
+    <Foo
+      hidden={true}
+    />
+
+    // good
+    <Foo
+      hidden
+    />
+
+    // good
+    <Foo hidden />
+    ```
+
+  - Always include an `alt` prop on `<img>` tags. If the image is presentational, `alt` can be an empty string or the `<img>` must have `role="presentation"`.
+
+    ```jsx
+    // bad
+    <img src="hello.jpg" />
+
+    // good
+    <img src="hello.jpg" alt="Me waving hello" />
+
+    // good
+    <img src="hello.jpg" alt="" />
+
+    // good
+    <img src="hello.jpg" role="presentation" />
+    ```
+
+  - Do not use words like "image", "photo", or "picture" in `<img>` `alt` props.
+
+    > Why? Screenreaders already announce `img` elements as images, so there is no need to include this information in the alt text.
+
+    ```jsx
+    // bad
+    <img src="hello.jpg" alt="Picture of me waving hello" />
+
+    // good
+    <img src="hello.jpg" alt="Me waving hello" />
+    ```
+
+  - Use only valid, non-abstract
+
+    ```jsx
+    // bad - not an ARIA role
+    <div role="datepicker" />
+
+    // bad - abstract ARIA role
+    <div role="range" />
+
+    // good
+    <div role="button" />
+    ```
+
+  - Do not use `accessKey` on elements.
+
+  > Why? Inconsistencies between keyboard shortcuts and keyboard commands used by people using screenreaders and keyboards complicate accessibility.
+
+  ```jsx
+  // bad
+  <div accessKey="h" />
+
+  // good
+  <div />
+  ```
+
+  - Avoid using an array index as `key` prop, prefer a stable ID. 
+
+> Why? Not using a stable ID [is an anti-pattern](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318) because it can negatively impact performance and cause issues with component state.
+
+We don’t recommend using indexes for keys if the order of items may change.
+
+  ```jsx
+  // bad
+  {todos.map((todo, index) =>
+    <Todo
+      {...todo}
+      key={index}
+    />
+  )}
+
+  // good
+  {todos.map(todo => (
+    <Todo
+      {...todo}
+      key={todo.id}
+    />
+  ))}
+  ```
+
+  - Always define explicit defaultProps for all non-required props.
+
+  > Why? propTypes are a form of documentation, and providing defaultProps means the reader of your code doesn’t have to assume as much. In addition, it can mean that your code can omit certain type checks.
+
+  ```jsx
+  // bad
+  function SFC({ foo, bar, children }) {
+    return <div>{foo}{bar}{children}</div>;
+  }
+  SFC.propTypes = {
+    foo: PropTypes.number.isRequired,
+    bar: PropTypes.string,
+    children: PropTypes.node,
+  };
+
+  // good
+  function SFC({ foo, bar, children }) {
+    return <div>{foo}{bar}{children}</div>;
+  }
+  SFC.propTypes = {
+    foo: PropTypes.number.isRequired,
+    bar: PropTypes.string,
+    children: PropTypes.node,
+  };
+  SFC.defaultProps = {
+    bar: '',
+    children: null,
+  };
+  ```
+
+  - Use spread props sparingly.
+  > Why? Otherwise you’re more likely to pass unnecessary props down to components. And for React v15.6.1 and older, you could [pass invalid HTML attributes to the DOM](https://reactjs.org/blog/2017/09/08/dom-attributes-in-react-16.html).
+
+  Exceptions:
+
+  - HOCs that proxy down props and hoist propTypes
+
+  ```jsx
+  function HOC(WrappedComponent) {
+    return class Proxy extends React.Component {
+      Proxy.propTypes = {
+        text: PropTypes.string,
+        isLoading: PropTypes.bool
+      };
+
+      render() {
+        return <WrappedComponent {...this.props} />
+      }
+    }
+  }
+  ```
+
+  - Spreading objects with known, explicit props. This can be particularly useful when testing React components with Mocha’s beforeEach construct.
+
+  ```jsx
+  export default function Foo {
+    const props = {
+      text: '',
+      isPublished: false
+    }
+
+    return (<div {...props} />);
+  }
+  ```
+  
+  - Destruct your `props`
 
     ### More than 2 props from an object been used in the same place should be destructed
 
+  Notes for use:
+  Filter out unnecessary props when possible.
 
-    ## Code style
-    ### Line length should not exceed 80 characters.
+  ```jsx
+  // bad
+  render() {
+    const { irrelevantProp, ...relevantProps } = this.props;
+    return <WrappedComponent {...this.props} />
+  }
 
-    ### Use explanatory variables
+  // good
+  render() {
+    const { irrelevantProp, ...relevantProps } = this.props;
+    return <WrappedComponent {...relevantProps} />
+  }
+  ```
+
+
 

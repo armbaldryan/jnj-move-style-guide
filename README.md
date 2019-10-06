@@ -13,7 +13,6 @@ This style guide is mostly based on the standards that are currently prevalent i
 
 ## Basic Rules
 
-  - Create each new component in folder (For example Table - Folder and inside index.tsx file)
   - Follow DRY (Don’t repeat yourself), KISS (Keep it small and simple), DIE (Duplication Is Evil), YAGNI (You Ain’t Gonna Need It), SOLID principles
   - 
   
@@ -23,6 +22,25 @@ This style guide is mostly based on the standards that are currently prevalent i
   - **Extensions**: Use `.tsx` extension for React components with typescript.
   - **Filename**: Use PascalCase for filenames. E.g., `ReservationCard.tsx`.
   - **Reference Naming**: Use PascalCase for React components and camelCase for their instances.
+  - **Component definition**: 
+
+    All components (presentation, containers or pages) should **always** be
+    defined as a directory, named with pascal casing. The main component file
+    should be `index.js`, main stylesheet `style.css`. CSS custom properties
+    can be kept in `properties.css`:
+
+    ```
+    ComponentName/
+    ├── index.tsx
+    └── styles.scss
+    ```
+
+    * Styles should always be defined in a separate SCSS file
+    * Avoid prefixing or suffixing component names
+      - E.g.: `lib/pages/UserPage` or `lib/container/UserContainer`
+    * On conflict rename on import
+      - `import UserContainer from '...'`
+      - `import { User as UserContainer } from '...'`
   
 ## Alignment
 

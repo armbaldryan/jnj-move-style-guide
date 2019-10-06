@@ -20,7 +20,7 @@ This style guide is mostly based on the standards that are currently prevalent i
 ## Naming
 
   - **Extensions**: Use `.tsx` extension for React components with typescript.
-  - **Filename**: Use PascalCase for filenames. E.g., `ReservationCard.tsx`.
+  - **Filename**: Use PascalCase for filenames. E.g., `ReservationCard.tsx`. Class and components folders names must start with capital     letter.
   - **Reference Naming**: Use PascalCase for React components and camelCase for their instances.
   - **Component definition**: 
 
@@ -87,6 +87,48 @@ This style guide is mostly based on the standards that are currently prevalent i
     // good
     {showButton && <Button />}
     ```
+    
+    - One line props when there are more than 2 props
+
+    Bad
+    ```jsx
+    <button type="submit" disabled onClick={() => {}} className="button">
+      Click here
+    </button>
+
+    <button type="submit" className="button">
+      Click here
+    </button>
+
+    <button className="aLongSpecificClassName">Click here</button>
+    ```
+
+    Good
+    ```jsx
+    <button
+      className="button"
+      disabled={loading}
+      onClick={() => {}}
+      type="submit"
+    >
+      Click here
+    </button>
+    ```
+
+    - One line component
+    Bad
+    ``` js
+    <div className="example"><span class="highlight">Bad</span> example</div>
+    ```
+
+    Good
+    ``` js
+    <div className="example">
+      <span className="highlight">Bad</span>
+      example
+    </div>
+    ```
+
     
     ## Quotes
 
@@ -173,4 +215,18 @@ This style guide is mostly based on the standards that are currently prevalent i
       baz="baz"
     />
     ```
+    
+    ## Code Standarts
+    
+    # Code standards
+
+    ## Destruct your `props`
+
+    ### More than 2 props from an object been used in the same place should be destructed
+
+
+    ## Code style
+    ### Line length should not exceed 80 characters.
+
+    ### Use explanatory variables
 

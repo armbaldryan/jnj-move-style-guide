@@ -4,23 +4,61 @@ This style guide is mostly based on the standards that are currently prevalent i
 ## Table of Contents
 
   1. [Basic Rules](#basic-rules)
-  2. [Naming](#naming)
-  3. [Alignment](#alignment)
-  4. [Quotes](#quotes)
-  5. [Spacing](#spacing)
-  6. [Parentheses](#parentheses)
-  7. [Tags](#tags)
-  8. [Variables](#variables)
-  9. [Props](#props)
-  10. [Commits](#commits)
+  2. [Commits](#commits)
+  3. [Branches](#branches)
+  4. [Naming](#naming)
+  5. [Alignment](#alignment)
+  6. [Quotes](#quotes)
+  7. [Spacing](#spacing)
+  8. [Parentheses](#parentheses)
+  9. [Tags](#tags)
+  10. [Variables](#variables)
+  11. [Props](#props)
+  12. [Css](#css)
 
 ## Basic Rules
 
   - Follow DRY (Don’t repeat yourself), KISS (Keep it small and simple), DIE (Duplication Is Evil), YAGNI (You Ain’t Gonna Need It), SOLID principles
   - 
   
+  ## Commits
   
-## Naming
+  Follow these git commit message guidelines
+
+  - Add sprint number at the beginning of commit message
+  - Add ticket number
+  - Write helpful message about what you have done 
+  - One change per commit
+  
+  ```
+    // bad
+    
+    Fixed IE issue
+  
+    //good
+    
+    sprint18/ADKG-100-Fixed-IE-issue-related-to-left-sidebar
+  
+  ```
+  
+  ## Branches
+  
+  - Add sprint number at the beginning of branch name
+  - Add ticket number
+  - Add small explanation
+  
+    ```
+    // bad
+    
+    ADKG-100
+  
+    //good
+    
+    sprint18/ADKG-100-IE-issue
+  
+    ```
+  
+  ## Naming
 
   - **Extensions**: Use `.tsx` extension for React components with typescript.
   - **Filename**: Use PascalCase for filenames. E.g., `ReservationCard.tsx`. Class and components folders names must start with capital     letter.
@@ -432,24 +470,50 @@ We don’t recommend using indexes for keys if the order of items may change.
     return <WrappedComponent {...relevantProps} />
   }
   ```
-  
-  ## Commits
-  
-  Follow these git commit message guidelines
+ ## CSS
+ # When writing rules, be sure to
 
-  - Add sprint number at the beginning of commit message
-  - Add ticket number
-  - Write helpful message about what you have done 
-  - One change per commit
-  
-  ```
-    // bad
-    
-    Fixed IE issue
-  
-    //good
-    
-    sprint18/ADKG-100-Fixed-IE-issue-related-to-left-sidebar
-  
-  ```
+* Put a space before the opening brace `{`
+* In properties put a space after (but not before) the `:` character
+* Put closing braces `}` of rule declarations on a new line
+* Leave **ONE** blank line in between rule declarations
+
+<table>
+<thead>
+<th><strong>GOOD</strong></th>
+<th><strong>BAD</strong></th>
+</thead>
+<tbody>
+<tr>
+<td>
+
+```css
+.container {
+  font-size: 12pt;
+}
+
+.thumbnail {
+  width: 160px;
+  height: 90px;
+}
+```
+
+</td>
+<td>
+
+```css
+
+.container{
+  font-size:12pt;}
+.thumbnail{
+  width:160px;
+  height:90px;}
+
+```
+
+</td>
+</tr>
+</thead>
+<tbody>
+</table>
 

@@ -1,4 +1,4 @@
-# jnj-style-guide
+# jnj-move-style-guide
 This style guide is mostly based on the standards that are currently prevalent in JavaScript, although some conventions (i.e async/await or static class fields) may still be included or prohibited on a case-by-case basis. 
 
 ## Table of Contents
@@ -11,7 +11,8 @@ This style guide is mostly based on the standards that are currently prevalent i
   6. [Parentheses](#parentheses)
   7. [Tags](#tags)
   8. [Variables](#variables)
-  9. [Props[(#props)
+  9. [Props](#props)
+  10. [Commits](#commits)
 
 ## Basic Rules
 
@@ -431,6 +432,24 @@ We don’t recommend using indexes for keys if the order of items may change.
     return <WrappedComponent {...relevantProps} />
   }
   ```
+  
+  ## Commits
+  
+  Follow these git commit message guidelines
 
-
+  - Add sprint number at the beginning of commit message
+  - Add ticket number
+  - Write helpful message about what you have done 
+  - One change per commit
+  
+  ```
+    // bad
+    
+    Fixed IE issue
+  
+    //good
+    
+    sprint18/ADKG-100-Fixed-IE-issue-related-to-left-sidebar
+  
+  ```
 

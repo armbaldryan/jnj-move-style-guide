@@ -129,11 +129,11 @@ This style guide is mostly based on the standards that are currently prevalent i
     // good
     {showButton && <Button />}
     ```
-    
-   - One line props when there are more than 2 props
-
-    Bad
+  - One line props when there are more than 2 props
+  
     ```jsx
+
+    // Bad
     <button type="submit" disabled onClick={() => {}} className="button">
       Click here
     </button>
@@ -144,9 +144,10 @@ This style guide is mostly based on the standards that are currently prevalent i
 
     <button className="aLongSpecificClassName">Click here</button>
     ```
-
-    Good
     ```jsx
+
+    // Good
+    
     <button
       className="button"
       disabled={loading}
@@ -157,14 +158,14 @@ This style guide is mostly based on the standards that are currently prevalent i
     </button>
     ```
 
-    - One line component
-    Bad
+  - One line component
+    
     ``` js
+    //Bad
     <div className="example"><span class="highlight">Bad</span> example</div>
     ```
-
-    Good
     ``` js
+    //Good
     <div className="example">
       <span className="highlight">Bad</span>
       example

@@ -18,8 +18,9 @@ This style guide is mostly based on the standards that are currently prevalent i
 
 ## Basic Rules
 
-  - Follow DRY (Don’t repeat yourself), KISS (Keep it small and simple), DIE (Duplication Is Evil), YAGNI (You Ain’t Gonna Need It), SOLID principles
-  - 
+  - Follow DRY (Don’t repeat yourself), KISS (Keep it small and simple), DIE (Duplication Is Evil), YAGNI (You Ain’t Gonna Need It), SOLID principles.
+  - Follow functional programming principles - pure functions, immutability, referential transparency, higher-order functions.
+  - Create Components with functions, especially use new React's useEffect, useState and etc. 
   
   ## Commits
   
@@ -129,7 +130,7 @@ This style guide is mostly based on the standards that are currently prevalent i
     {showButton && <Button />}
     ```
     
-    - One line props when there are more than 2 props
+   - One line props when there are more than 2 props
 
     Bad
     ```jsx
